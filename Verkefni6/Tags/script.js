@@ -63,5 +63,18 @@ tagsArray.forEach(function(tag) { // fall sem að býr til takkana og setur í n
     nav = document.getElementById("tags");
     button.textContent = tag;
     nav.appendChild(button);
+
+    let buttons = document.querySelector("button");// bý til event listener sem að er með callback á update fallið sem keyrir með tagnafninu sem var ýtt á
+    buttons.children().forEach(button); {
+        buttons.addEventListener("click", function() { update(tag) });
+    }
+
+    function update(tagName) {
+        if(image.tags.includes(tagName)){
+            image.removeAttribute("hidden");
+        } else {
+            image.setAttribute("hidden", "");
+        }
+    }
 });
 
