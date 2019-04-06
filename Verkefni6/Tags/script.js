@@ -44,11 +44,12 @@ let imagesArray = [ // the images and the tags attached
 const gallery = document.getElementById("images");
 const tags = document.getElementById("tags");
 
-let tagsArray = ["Show All"];
+let tagsArray = [];
 
 imagesArray.forEach(function(image) { // make the image and append it to the gallery
     const img = new Image();
     img.src = image.src;
+    image.element = img;
     gallery.appendChild(img);
     // check the tags and add them to a list for a complete tag list
     image.tags.forEach(function(tag) {
@@ -58,23 +59,29 @@ imagesArray.forEach(function(image) { // make the image and append it to the gal
     });
 });
 
+function update(tagName) {
+    imagesArray.forEach(function(image) {
+        if (image.tags.includes(tagName) || tagName === undefined) {
+            image.element.removeAttribute("hidden");
+        } else {
+            image.element.setAttribute("hidden", "");
+        }
+    });
+}
+
+const nav = document.getElementById("tags");
+
+// show all
+const showAllButton = document.createElement("button");
+showAllButton.textContent = "Show All";
+showAllButton.addEventListener("click", function() { update(); });
+nav.appendChild(showAllButton);
+
 tagsArray.forEach(function(tag) { // fall sem að býr til takkana og setur í nav í hmtl
-    button = document.createElement("button");
-    nav = document.getElementById("tags");
+    const button = document.createElement("button");
     button.textContent = tag;
     nav.appendChild(button);
 
-    let buttons = document.querySelector("button");// bý til event listener sem að er með callback á update fallið sem keyrir með tagnafninu sem var ýtt á
-    buttons.children().forEach(button); {
-        buttons.addEventListener("click", function() { update(tag) });
-    }
-
-    function update(tagName) {
-        if(image.tags.includes(tagName)){
-            image.removeAttribute("hidden");
-        } else {
-            image.setAttribute("hidden", "");
-        }
-    }
+    // bý til event listener sem að er með callback á update fallið sem keyrir með tag-nafninu sem var ýtt á
+    button.addEventListener("click", function() { update(tag); })
 });
-
