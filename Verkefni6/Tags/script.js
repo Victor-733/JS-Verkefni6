@@ -44,17 +44,24 @@ let imagesArray = [ // the images and the tags attached
 const gallery = document.getElementById("images");
 const tags = document.getElementById("tags");
 
-let tagsArray = [];
+let tagsArray = ["Show All"];
 
 imagesArray.forEach(function(image) { // make the image and append it to the gallery
     const img = new Image();
     img.src = image.src;
     gallery.appendChild(img);
     // check the tags and add them to a list for a complete tag list
-    image.tags.forEach(tag){
+    image.tags.forEach(function(tag) {
         if (!tagsArray.includes(tag)){
             tagsArray.push(tag);
         }
-    };
+    });
+});
+
+tagsArray.forEach(function(tag) { // fall sem að býr til takkana
+    button = document.createElement("button");
+    nav = document.getElementById("tags");
+    button.textContent = tag;
+    nav.appendChild(button);
 });
 
