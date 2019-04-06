@@ -1,4 +1,4 @@
-let imagesArray = [ // the images and the tags attached
+let imagesArray = [ // myndirnar og töggin þeirra
     {
         name: "Bob Ross",
         src: "img/bobRoss.jpg",
@@ -46,12 +46,12 @@ const tags = document.getElementById("tags");
 
 let tagsArray = [];
 
-imagesArray.forEach(function(image) { // make the image and append it to the gallery
+imagesArray.forEach(function(image) { // búa til mynd og setja hana í gallery
     const img = new Image();
     img.src = image.src;
     image.element = img;
     gallery.appendChild(img);
-    // check the tags and add them to a list for a complete tag list
+    // fara yfir tögin og athuga hvort að töggin séu í því og bæta því við listan ef ekki
     image.tags.forEach(function(tag) {
         if (!tagsArray.includes(tag)){
             tagsArray.push(tag);

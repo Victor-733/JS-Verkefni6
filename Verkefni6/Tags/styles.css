@@ -1,0 +1,15 @@
+body {
+    margin: 0 auto;
+}
+main {
+    max-width: 60em;
+    margin: 0 auto;
+    text-align: center;
+}
+img {
+   max-width: 20em; 
+}
+header,
+footer {
+    text-align: center;
+}
