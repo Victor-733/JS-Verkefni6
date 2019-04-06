@@ -69,12 +69,22 @@ function update(tagName) {
     });
 }
 
+function clicked(activeButton) { // fall sem að breytir útlitinu á takkanum þegar ýtt er á hann
+    nav.childNodes.forEach(function(button) {
+        button.classList.remove("active");
+    });
+    activeButton.classList.add("active");
+}
+
 const nav = document.getElementById("tags");
 
 // show all
 const showAllButton = document.createElement("button");
 showAllButton.textContent = "Show All";
-showAllButton.addEventListener("click", function() { update(); });
+showAllButton.addEventListener("click", function(e) {
+    clicked(showAllButton);
+    update();
+});
 nav.appendChild(showAllButton);
 
 tagsArray.forEach(function(tag) { // fall sem að býr til takkana og setur í nav í hmtl
@@ -83,5 +93,8 @@ tagsArray.forEach(function(tag) { // fall sem að býr til takkana og setur í n
     nav.appendChild(button);
 
     // bý til event listener sem að er með callback á update fallið sem keyrir með tag-nafninu sem var ýtt á
-    button.addEventListener("click", function() { update(tag); })
+    button.addEventListener("click", function(e) {
+        clicked(button);
+        update(tag);
+    })
 });
