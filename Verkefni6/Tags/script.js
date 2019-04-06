@@ -58,7 +58,7 @@ imagesArray.forEach(function(image) { // make the image and append it to the gal
     });
 });
 
-tagsArray.forEach(function(tag) { // fall sem að býr til takkana
+tagsArray.forEach(function(tag) { // fall sem að býr til takkana og setur í nav í hmtl
     button = document.createElement("button");
     nav = document.getElementById("tags");
     button.textContent = tag;
